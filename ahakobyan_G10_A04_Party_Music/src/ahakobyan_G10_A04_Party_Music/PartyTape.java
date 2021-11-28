@@ -1,3 +1,5 @@
+package ahakobyan_G10_A04_Party_Music;
+
 /**
  * Description: This class contains methods, used in PartyMusicFrame.java, to
  * store data from the frame and the file input.

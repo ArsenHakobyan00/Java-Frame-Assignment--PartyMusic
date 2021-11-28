@@ -1,3 +1,5 @@
+package ahakobyan_G10_A04_Party_Music;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
