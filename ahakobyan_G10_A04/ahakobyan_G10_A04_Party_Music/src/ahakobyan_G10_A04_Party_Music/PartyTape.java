@@ -1,10 +1,13 @@
 package ahakobyan_G10_A04_Party_Music;
+
 /**
- * Description: This class contains methods, used in PartyMusicFrame.java, to  store data from the frame and the file input.
+ * Description: This class contains methods, used in PartyMusicFrame.java, to
+ * store data from the frame and the file input.
+ * 
  * @author Arsen Hakobyan
- * Course Number: 420-G10
- * Assignment: 4 (final)
- * Date: 30 December 2019
+ *         Course Number: 420-G10
+ *         Assignment: 4 (final)
+ *         Date: 30 December 2019
  */
 public class PartyTape {
 
@@ -14,70 +17,75 @@ public class PartyTape {
 	private int totalSecondsLeft;
 
 	public PartyTape() {
-		collectionName = "Unknown";
-		tapeLength = 0;
-		totalSecondsUsed = 0;
-		totalSecondsLeft = 0;
+		setCollectionName("Unknown");
+		setTapeLength(0);
+		setSecondsUsed(0);
+		setSecondsLeft(0);
 	}// PartyTape() default constructor
 
 	public PartyTape(String name, int length) {
-		collectionName = name;
-		tapeLength = length*60;
-		totalSecondsUsed = 0;
-		totalSecondsLeft = 0;
+		setCollectionName(name);
+		setTapeLength(length * 60);
+		setSecondsUsed(0);
+		setSecondsLeft(0);
 	}// PartyTape(String, int) constructor
 
 	public String getCollectionName() {
 		return collectionName;
 	}// getCollectionName()
 
-	public void setCollectionName(String name) {
-		collectionName = name;
+	private void setCollectionName(String name) {
+		this.collectionName = name;
 	}// setCollectionName(String)
 
 	public int getTapeLength() {
 		return tapeLength;
 	}// getTapeLength()
 
-	public void setTapeLength(int length) {
-		tapeLength = length;
+	private void setTapeLength(int length) {
+		this.tapeLength = length;
 	}// setTapeLength(int)
-
-	public int getMinutesUsed() {
-		return totalSecondsUsed / 60;
-	}// getMinutesUsed()
 
 	public int getSecondsUsed() {
 		return totalSecondsUsed % 60;
 	}// getSecondsUsed()
 
-	public int getMinutesLeft() {
-		return totalSecondsLeft / 60;
-	}// getMinutesLeft()
+	private void setSecondsUsed(int secondsUsed) {
+		this.totalSecondsUsed = secondsUsed;
+	}// setSecondsUsed(int)
 
 	public int getSecondsLeft() {
 		return totalSecondsLeft;
 	}// getSecondsLeft()
 
-	public int convertToSeconds(int min, int sec) {
-		int seconds = min * 60 + sec;
-		return seconds;
+	private void setSecondsLeft(int secondsLeft) {
+		this.totalSecondsLeft = secondsLeft;
+	}// setSecondsLeft()
+
+	public int getMinutesUsed() {
+		return totalSecondsUsed / 60;
+	}// getMinutesUsed()
+
+	public int getMinutesLeft() {
+		return totalSecondsLeft / 60;
+	}// getMinutesLeft()
+
+	private int convertToSeconds(int min, int sec) {
+		return min * 60 + sec;
 	}// convertToSeconds(int, int)
 
 	public Boolean addSong(int min, int sec) {
-		Boolean roomLeft = null;
 		int seconds = convertToSeconds(min, sec);
 		totalSecondsLeft = getTapeLength();
+
 		if (getSecondsLeft() - seconds > 0) {
-			roomLeft = true;
+			// Update the total seconds used and left
 			totalSecondsUsed += seconds;
 			totalSecondsLeft -= seconds;
 			setTapeLength(totalSecondsLeft);
+			return true;
 		}
-		else {
-			roomLeft = false;
-		}
-		return roomLeft;
+		return false;
 	}// addSong(int, int)
-	
+
 }// PartyTape() class
